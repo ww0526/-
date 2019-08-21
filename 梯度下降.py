@@ -20,7 +20,9 @@ for i,(gradient,var) in enumerate(grads_and_vars):
 train_op = optimizer.apply_gradients(grads_and_vars)
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
-    print(sess.run(grads_and_vars))
-     # 梯度修正前[(9.0, 2.0), (12.0, 3.0)]；梯度修正后 ，[(5.0, 2.0), (5.0, 3.0)]
-    print(sess.run(grads))  #[9.0, 12.0]，
-    print(train_op)
+    for i in range(5):
+        sess.run(train_op)
+        print(sess.run(grads_and_vars))
+        # 梯度修正前[(9.0, 2.0), (12.0, 3.0)]；梯度修正后 ，[(5.0, 2.0), (5.0, 3.0)]
+        print(sess.run(grads))  #[9.0, 12.0]，
+    
